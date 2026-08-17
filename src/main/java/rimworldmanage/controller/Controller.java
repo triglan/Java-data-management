@@ -68,6 +68,38 @@ public class Controller {
         );
     }
 
+    public void deleteColonist() {
+        int id = view.readInt("삭제할 정착민 번호: ");
+
+        Colonist colonist = repository.findById(id);
+
+        if (colonist == null) {
+            view.displayError("해당 번호의 정착민을 찾을 수 없습니다.");
+            return;
+        }
+
+        /*
+         * 삭제는 되돌리기 어려우므로 사용자에게 한 번 더 확인받는다.
+         * equalsIgnoreCase()를 사용하여 y와 Y를 모두 허용한다.
+         */
+        String confirm = view.readString(
+                colonist.getName() + " 정착민을 삭제하시겠습니까? (y/n): "
+        );
+
+        if (!confirm.equalsIgnoreCase("y")) {
+            view.displayMessage("삭제를 취소했습니다.");
+            return;
+        }
+
+        repository.deleteById(id);
+
+        view.displaySuccess(
+                id + "번 정착민 "
+                        + colonist.getName()
+                        + "이 삭제되었습니다."
+        );
+    }
+
     //등록
     public void registerColonist() {
 

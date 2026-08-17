@@ -18,6 +18,10 @@ public class Repository {
         colonists.add(colonist);
     }
 
+    public void deleteById(int id) {
+        colonists.removeIf(colonist -> colonist.getId() == id);
+    }
+
     public Repository() {
         save(new Colonist("알파", 28, Job.CONSTRUCTION, 12, Status.HEALTHY));
         save(new Colonist("베타", 35, Job.COOKING, 1, Status.INJURED));

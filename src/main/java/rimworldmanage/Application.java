@@ -34,6 +34,9 @@ public class Application {
                 case 6:
                     controller.updateColonist();
                     break;
+                case 7:
+                    controller.deleteColonist();
+                    break;
                 case 9:
                     view.displaySuccess("프로그램을 종료합니다.");
                     return;
