@@ -31,6 +31,9 @@ public class Application {
                 case 5:
                     controller.showColonistsByJob();
                     break;
+                case 6:
+                    controller.updateColonist();
+                    break;
                 case 9:
                     view.displaySuccess("프로그램을 종료합니다.");
                     return;

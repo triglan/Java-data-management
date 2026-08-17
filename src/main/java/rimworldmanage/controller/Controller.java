@@ -18,6 +18,56 @@ public class Controller {
         this.view = view;
     }
 
+    public void updateColonist() {
+        int id = view.readInt("수정할 정착민 번호: ");
+
+        Colonist colonist = repository.findById(id);
+
+        if (colonist == null) {
+            view.displayError("해당 번호의 정착민을 찾을 수 없습니다.");
+            return;
+        }
+
+        String name = view.readString("새 이름: ");
+        int age = view.readInt("새 나이: ");
+        Job job = view.readJob();
+        int skillLevel = view.readInt("새 숙련도(0 ~ 20): ");
+
+        /*
+         * 모든 입력값을 검증한 뒤 setter를 호출한다.
+         * 검증 전에 일부 값을 수정하면 오류 발생 시 데이터가 일부만 변경될 수 있다.
+         */
+        if (name.isBlank()) {
+            view.displayError("이름은 비워둘 수 없습니다.");
+            return;
+        }
+
+        if (age <= 0) {
+            view.displayError("나이는 1 이상이어야 합니다.");
+            return;
+        }
+
+        if (skillLevel < 0 || skillLevel > 20) {
+            view.displayError("숙련도는 0 ~ 20 사이여야 합니다.");
+            return;
+        }
+
+        /*
+         * findById()로 가져온 객체는 Repository의 리스트에 저장된 객체와 같다.
+         * 따라서 setter로 값을 변경하면 Repository에 저장된 정보도 변경된다.
+         *
+         * ID와 상태는 이번 수정 대상에 포함하지 않는다.
+         */
+        colonist.setName(name);
+        colonist.setAge(age);
+        colonist.setJob(job);
+        colonist.setSkillLevel(skillLevel);
+
+        view.displaySuccess(
+                id + "번 정착민 정보가 수정되었습니다."
+        );
+    }
+
     //등록
     public void registerColonist() {
 
