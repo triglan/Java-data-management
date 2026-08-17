@@ -7,6 +7,7 @@ import rimworldmanage.model.Status;
 import java.util.ArrayList;
 import java.util.List;
 
+//정착민 관리
 public class Repository {
     //크기가 정해지지 않은 배열
     private final List<Colonist> colonists = new ArrayList<>();
@@ -37,7 +38,23 @@ public class Repository {
                 .orElse(null);
     }
 
+    public List<Colonist> searchByName(String keyword) {
+        String lowerKeyword = keyword.trim().toLowerCase();
 
+        return colonists.stream()
+                .filter(colonist ->
+                        colonist.getName()
+                                .toLowerCase()
+                                .contains(lowerKeyword)
+                )
+                .toList();
+    }
+
+    public List<Colonist> findByJob(Job job) {
+        return colonists.stream()
+                .filter(colonist -> colonist.getJob() == job)
+                .toList();
+    }
 
     
 }

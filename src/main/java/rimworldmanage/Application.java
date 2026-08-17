@@ -24,6 +24,13 @@ public class Application {
                 case 3:
                     controller.showColonistById();
                     break;
+                case 4:
+                    controller.searchColonistsByName();
+                    break;
+
+                case 5:
+                    controller.showColonistsByJob();
+                    break;
                 case 9:
                     view.displaySuccess("프로그램을 종료합니다.");
                     return;

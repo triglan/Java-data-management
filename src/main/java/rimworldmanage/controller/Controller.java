@@ -68,5 +68,25 @@ public class Controller {
 
         view.displayColonist(colonist);
     }
+    public void searchColonistsByName() {
+        String keyword = view.readString("검색할 이름: ");
+
+        if (keyword.isBlank()) {
+            view.displayError("검색어는 비워둘 수 없습니다.");
+            return;
+        }
+
+        List<Colonist> colonists = repository.searchByName(keyword);
+
+        view.displayColonists(colonists);
+    }
+    public void showColonistsByJob() {
+        Job job = view.readJob();
+
+        List<Colonist> colonists = repository.findByJob(job);
+
+        view.displayColonists(colonists);
+    }
+
 
 }

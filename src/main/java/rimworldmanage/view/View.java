@@ -15,6 +15,8 @@ public class View {
         System.out.println("1. 정착민 등록");
         System.out.println("2. 전체 정착민 조회");
         System.out.println("3. 번호로 정착민 조회");
+        System.out.println("4. 이름으로 정착민 검색");
+        System.out.println("5. 직업별 정착민 조회");
         System.out.println("9. 프로그램 종료");
 
         return readInt("메뉴 선택: ");
