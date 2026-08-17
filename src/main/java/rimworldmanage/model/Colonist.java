@@ -8,8 +8,7 @@ public class Colonist {
         private int skillLevel;
         private Status status;
 
-    public Colonist(int id, String name, int age, Job job, int skillLevel, Status status) {
-        this.id = id;
+    public Colonist(String name, int age, Job job, int skillLevel, Status status) {
         this.name = name;
         this.age = age;
         this.job = job;
@@ -17,10 +16,13 @@ public class Colonist {
         this.status = status;
     }
 
-    //set id는 없음.
-    
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 
@@ -62,5 +64,17 @@ public class Colonist {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Colonist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", job=" + job +
+                ", skillLevel=" + skillLevel +
+                ", status=" + status +
+                '}';
     }
 }
