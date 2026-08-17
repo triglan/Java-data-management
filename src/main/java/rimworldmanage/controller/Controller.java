@@ -82,11 +82,11 @@ public class Controller {
          * 삭제는 되돌리기 어려우므로 사용자에게 한 번 더 확인받는다.
          * equalsIgnoreCase()를 사용하여 y와 Y를 모두 허용한다.
          */
-        String confirm = view.readString(
+        boolean confirmed = view.readConfirm(
                 colonist.getName() + " 정착민을 삭제하시겠습니까? (y/n): "
         );
 
-        if (!confirm.equalsIgnoreCase("y")) {
+        if (!confirmed) {
             view.displayMessage("삭제를 취소했습니다.");
             return;
         }

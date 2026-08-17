@@ -39,6 +39,7 @@ public class Application {
                     break;
                 case 9:
                     view.displaySuccess("프로그램을 종료합니다.");
+                    view.close();
                     return;
 
                 default:

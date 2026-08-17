@@ -105,10 +105,37 @@ public class View {
         }
     }
     public String readString(String message) {
+        while (true) {
+            System.out.print(message);
+            String input = scanner.nextLine().trim();
 
-        System.out.print(message);
+            if (!input.isBlank()) {
+                return input;
+            }
 
-        return scanner.nextLine();
+            displayError("한 글자 이상 입력해주세요.");
+        }
+    }
+    public boolean readConfirm(String message) {
+
+        while (true) {
+            System.out.print(message);
+            String input = scanner.nextLine().trim();
+
+            if (input.equalsIgnoreCase("y")) {
+                return true;
+            }
+
+            if (input.equalsIgnoreCase("n")) {
+                return false;
+            }
+
+            displayError("y 또는 n을 입력해주세요.");
+        }
+    }
+    //종료시 Scanner 닫기
+    public void close() {
+        scanner.close();
     }
 }
 
