@@ -49,6 +49,19 @@ public class View {
     }
 
 //직업 선택
+
+
+
+
+// 성공 오류 메시지
+    public void displayError(String message) {
+        System.out.println("[오류] " + message);
+    }
+    public void displaySuccess(String message) {
+        System.out.println("[완료] " + message);
+    }
+
+    //입력
     public Job readJob() {
 
         Job[] jobs = Job.values();
@@ -72,17 +85,6 @@ public class View {
             );
         }
     }
-
-
-
-// 성공 오류 메시지
-    public void displayError(String message) {
-        System.out.println("[오류] " + message);
-    }
-    public void displaySuccess(String message) {
-        System.out.println("[완료] " + message);
-    }
-    
     public int readInt(String message){
         while(true){
             System.out.println(message);
