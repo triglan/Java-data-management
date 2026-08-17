@@ -29,14 +29,15 @@ public class Repository {
     public List<Colonist> findAll(){
         return new ArrayList<>(colonists);
     }
-    public Colonist findByID(int id){
-        for (Colonist colonist : colonists){
-            if(colonist.getId() == id){
-                return colonist;
-            }
-        }
-        return null;
+
+    public Colonist findById(int id){
+        return colonists.stream()
+                .filter(colonist -> colonist.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
+
+
 
     
 }
