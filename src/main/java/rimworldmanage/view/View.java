@@ -2,6 +2,7 @@ package rimworldmanage.view;
 
 import rimworldmanage.model.Colonist;
 import rimworldmanage.model.Job;
+import rimworldmanage.model.Status;
 
 import java.util.List;
 import java.util.Scanner;
@@ -131,6 +132,36 @@ public class View {
             }
 
             displayError("y 또는 n을 입력해주세요.");
+        }
+    }
+
+    public Status readStatus() {
+        Status[] statuses = Status.values();
+
+        while (true) {
+            System.out.println();
+            System.out.println("===== 상태 선택 =====");
+
+            for (int i = 0; i < statuses.length; i++) {
+                System.out.println(
+                        (i + 1) + ". " + statuses[i].getDescription()
+                );
+            }
+
+            int selected = readInt("선택: ");
+
+            /*
+             * 사용자 메뉴 번호는 1부터 시작하고
+             * 배열 인덱스는 0부터 시작하므로 1을 뺀다.
+             */
+            if (selected >= 1 && selected <= statuses.length) {
+                return statuses[selected - 1];
+            }
+
+            displayError(
+                    "1 ~ " + statuses.length
+                            + " 사이의 번호를 입력해주세요."
+            );
         }
     }
     //종료시 Scanner 닫기

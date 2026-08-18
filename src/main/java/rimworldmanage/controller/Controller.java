@@ -32,6 +32,7 @@ public class Controller {
         int age = view.readInt("새 나이: ");
         Job job = view.readJob();
         int skillLevel = view.readInt("새 숙련도(0 ~ 20): ");
+        Status status = view.readStatus();
 
         /*
          * 모든 입력값을 검증한 뒤 setter를 호출한다.
@@ -62,6 +63,7 @@ public class Controller {
         colonist.setAge(age);
         colonist.setJob(job);
         colonist.setSkillLevel(skillLevel);
+        colonist.setStatus(status);
 
         view.displaySuccess(
                 id + "번 정착민 정보가 수정되었습니다."
