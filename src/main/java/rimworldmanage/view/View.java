@@ -50,7 +50,8 @@ public class View {
                         + colonist.getAge() + "세 | "
                         + colonist.getJob().getDescription() + " | "
                         + "Lv." + colonist.getSkillLevel() + " | "
-                        + colonist.getStatus().getDescription()
+                        + colonist.getStatus().getDescription() + " | "
+                        + "합류일 " + colonist.getJoinedDate()
         );
     }
     //전체 정착민 출력
