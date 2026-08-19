@@ -24,7 +24,7 @@ public class Repository {
 
     public Repository() {
         save(new Colonist("알파", 28, Job.CONSTRUCTION, 12, Status.HEALTHY));
-        save(new Colonist("베타", 35, Job.COOKING, 1, Status.INJURED));
+        save(new Colonist("베타", 35, Job.COOKING, 1, Status.MENTAL_BREAK));
         save(new Colonist("감마", 16, Job.CONSTRUCTION, 4, Status.INJURED));
         save(new Colonist("델타", 45, Job.MEDICAL, 7, Status.HEALTHY));
         save(new Colonist("오메가", 7, Job.MINING, 10, Status.SICK));
@@ -60,5 +60,10 @@ public class Repository {
                 .toList();
     }
 
+    public List<Colonist> findByStatus(Status status) {
+        return colonists.stream()
+                .filter(colonist -> colonist.getStatus() == status)
+                .toList();
+    }
     
 }

@@ -28,6 +28,8 @@ public class Controller {
             return;
         }
 
+
+
         String name = view.readString("새 이름: ");
         int age = view.readInt("새 나이: ");
         Job job = view.readJob();
@@ -50,6 +52,16 @@ public class Controller {
 
         if (skillLevel < 0 || skillLevel > 20) {
             view.displayError("숙련도는 0 ~ 20 사이여야 합니다.");
+            return;
+        }
+
+        if (status == Status.MENTAL_BREAK
+                && colonist.getJob() != job) {
+
+            view.displayError(
+                    "정신 이상 상태인 정착민은 직업을 변경할 수 없습니다."
+            );
+
             return;
         }
 
@@ -168,6 +180,18 @@ public class Controller {
         Job job = view.readJob();
 
         List<Colonist> colonists = repository.findByJob(job);
+
+        view.displayColonists(colonists);
+    }
+
+    public void showColonistsByStatus() {
+        Status status = view.readStatus();
+
+        List<Colonist> colonists = repository.findByStatus(status);
+
+        view.displayMessage(
+                status.getDescription() + " 상태의 정착민입니다."
+        );
 
         view.displayColonists(colonists);
     }

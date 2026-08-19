@@ -20,6 +20,7 @@ public class View {
         System.out.println("5. 직업별 정착민 조회");
         System.out.println("6. 정착민 정보 수정");
         System.out.println("7. 정착민 삭제");
+        System.out.println("8. 상태별 정착민 조회");
         System.out.println("9. 프로그램 종료");
 
         return readInt("메뉴 선택: ");
@@ -40,7 +41,7 @@ public class View {
     public void displayColonists(List<Colonist> colonists) {
 
         if (colonists.isEmpty()) {
-            System.out.println("[안내] 등록된 정착민이 없습니다.");
+            System.out.println("[안내] 조회된 정착민이 없습니다.");
             return;
         }
 

@@ -12,6 +12,7 @@ public class Application {
 
         Controller controller = new Controller(repository, view);
 
+        
         while (true) {
             int menu = view.showMainMenu();
             switch (menu) {
@@ -36,6 +37,9 @@ public class Application {
                     break;
                 case 7:
                     controller.deleteColonist();
+                    break;
+                case 8:
+                    controller.showColonistsByStatus();
                     break;
                 case 9:
                     view.displaySuccess("프로그램을 종료합니다.");
