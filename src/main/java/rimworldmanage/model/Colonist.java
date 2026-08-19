@@ -1,6 +1,7 @@
 package rimworldmanage.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Colonist {
         private int id;
@@ -9,7 +10,7 @@ public class Colonist {
         private Job job;
         private int skillLevel;
         private Status status;
-        private LocalDate joinedDate;
+        private LocalDateTime joinedAt;
 
     public Colonist(String name, int age, Job job, int skillLevel, Status status) {
         this.name = name;
@@ -17,11 +18,12 @@ public class Colonist {
         this.job = job;
         this.skillLevel = skillLevel;
         this.status = status;
-        this.joinedDate = LocalDate.now();
+        this.joinedAt = LocalDateTime.now().withNano(0);
     }
 
-    public LocalDate getJoinedDate() {
-        return joinedDate;
+
+    public LocalDateTime getJoinedAt() {
+        return joinedAt;
     }
 
     public int getId() {
@@ -82,7 +84,7 @@ public class Colonist {
                 ", job=" + job +
                 ", skillLevel=" + skillLevel +
                 ", status=" + status +
-                ", joinedDate=" + joinedDate +
+                ", joinedAt=" + joinedAt +
                 '}';
     }
 }

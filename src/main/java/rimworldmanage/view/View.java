@@ -4,12 +4,15 @@ import rimworldmanage.model.Colonist;
 import rimworldmanage.model.Job;
 import rimworldmanage.model.Status;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class View {
     private final Scanner scanner = new Scanner(System.in);
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     // 메인 메뉴에는 등록, 조회, 수정, 삭제와 같은 큰 기능만 표시한다.
     public int showMainMenu() {
@@ -51,7 +54,7 @@ public class View {
                         + colonist.getJob().getDescription() + " | "
                         + "Lv." + colonist.getSkillLevel() + " | "
                         + colonist.getStatus().getDescription() + " | "
-                        + "합류일 " + colonist.getJoinedDate()
+                        + "합류 " + colonist.getJoinedAt().format(DATE_TIME_FORMATTER)
         );
     }
     //전체 정착민 출력
