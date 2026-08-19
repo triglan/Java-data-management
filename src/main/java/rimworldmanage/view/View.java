@@ -10,18 +10,32 @@ import java.util.Scanner;
 public class View {
     private final Scanner scanner = new Scanner(System.in);
 
-//전체 선택
-    public int showMainMenu(){
-        System.out.println("\n===== 정착민 관리 시스템 =====");
+    // 메인 메뉴에는 등록, 조회, 수정, 삭제와 같은 큰 기능만 표시한다.
+    public int showMainMenu() {
+        System.out.println();
+        System.out.println("===== 정착민 관리 시스템 =====");
         System.out.println("1. 정착민 등록");
-        System.out.println("2. 전체 정착민 조회");
-        System.out.println("3. 번호로 정착민 조회");
-        System.out.println("4. 이름으로 정착민 검색");
-        System.out.println("5. 직업별 정착민 조회");
-        System.out.println("6. 정착민 정보 수정");
-        System.out.println("7. 정착민 삭제");
-        System.out.println("8. 상태별 정착민 조회");
+        System.out.println("2. 정착민 조회");
+        System.out.println("3. 정착민 정보 수정");
+        System.out.println("4. 정착민 삭제");
         System.out.println("9. 프로그램 종료");
+
+        return readInt("메뉴 선택: ");
+    }
+
+    /*
+     * 조회 기능을 하위 메뉴로 묶어 메인 메뉴가 길어지지 않게 한다.
+     * 이 메뉴의 9번은 프로그램 종료가 아니라 이전 메뉴로 돌아가기이다.
+     */
+    public int showSearchMenu() {
+        System.out.println();
+        System.out.println("===== 정착민 조회 =====");
+        System.out.println("1. 전체 정착민 조회");
+        System.out.println("2. 번호로 정착민 조회");
+        System.out.println("3. 이름으로 정착민 검색");
+        System.out.println("4. 직업별 정착민 조회");
+        System.out.println("5. 상태별 정착민 조회");
+        System.out.println("9. 이전 메뉴로");
 
         return readInt("메뉴 선택: ");
     }
