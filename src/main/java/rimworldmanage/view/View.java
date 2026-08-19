@@ -5,6 +5,7 @@ import rimworldmanage.model.Job;
 import rimworldmanage.model.Status;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class View {
@@ -18,6 +19,7 @@ public class View {
         System.out.println("2. 정착민 조회");
         System.out.println("3. 정착민 정보 수정");
         System.out.println("4. 정착민 삭제");
+        System.out.println("5. 정착지 통계");
         System.out.println("9. 프로그램 종료");
 
         return readInt("메뉴 선택: ");
@@ -66,6 +68,41 @@ public class View {
         }
 
         System.out.println("총 " + colonists.size() + "명");
+    }
+
+    /*
+     * Repository가 계산한 통계 결과를 출력한다.
+     * enum의 모든 값을 순회하여 인원이 0명인 직업과 상태도 표시한다.
+     */
+    public void displayStatistics(
+            int totalCount,
+            Map<Job, Long> jobCounts,
+            Map<Status, Long> statusCounts,
+            double averageSkillLevel
+    ) {
+        System.out.println();
+        System.out.println("===== 정착지 통계 =====");
+        System.out.println("전체 정착민 : " + totalCount + "명");
+
+        System.out.println();
+        System.out.println("직업별 인원");
+        for (Job job : Job.values()) {
+            System.out.println(
+                    job.getDescription() + " : "
+                            + jobCounts.getOrDefault(job, 0L) + "명"
+            );
+        }
+
+        System.out.println();
+        System.out.println("상태별 인원");
+        for (Status status : Status.values()) {
+            System.out.println(
+                    status.getDescription() + " : "
+                            + statusCounts.getOrDefault(status, 0L) + "명"
+            );
+        }
+
+        System.out.printf("평균 숙련도 : %.1f%n", averageSkillLevel);
     }
 
 //직업 선택

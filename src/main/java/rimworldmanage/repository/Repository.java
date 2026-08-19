@@ -6,6 +6,8 @@ import rimworldmanage.model.Status;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 //정착민 관리
 public class Repository {
@@ -64,6 +66,43 @@ public class Repository {
         return colonists.stream()
                 .filter(colonist -> colonist.getStatus() == status)
                 .toList();
+    }
+
+    // 전체 인원은 별도의 복사본을 만들지 않고 저장소가 직접 계산한다.
+    public int getTotalCount() {
+        return colonists.size();
+    }
+
+    /*
+     * groupingBy()로 직업이 같은 정착민을 묶고,
+     * counting()으로 각 직업의 정착민 수를 계산한다.
+     */
+    public Map<Job, Long> countByJob() {
+        return colonists.stream()
+                .collect(Collectors.groupingBy(
+                        Colonist::getJob,
+                        Collectors.counting()
+                ));
+    }
+
+    // 상태가 같은 정착민을 묶어 상태별 인원을 계산한다.
+    public Map<Status, Long> countByStatus() {
+        return colonists.stream()
+                .collect(Collectors.groupingBy(
+                        Colonist::getStatus,
+                        Collectors.counting()
+                ));
+    }
+
+    /*
+     * averagingInt()로 모든 정착민의 숙련도 평균을 계산한다.
+     * 정착민이 한 명도 없으면 0.0을 반환한다.
+     */
+    public double getAverageSkillLevel() {
+        return colonists.stream()
+                .collect(Collectors.averagingInt(
+                        Colonist::getSkillLevel
+                ));
     }
     
 }

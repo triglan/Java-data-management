@@ -7,6 +7,7 @@ import rimworldmanage.repository.Repository;
 import rimworldmanage.view.View;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class Controller {
@@ -194,6 +195,24 @@ public class Controller {
         );
 
         view.displayColonists(colonists);
+    }
+
+    /*
+     * 통계 계산은 Repository에 요청하고,
+     * 계산 결과를 화면에 보여주는 일은 View에 맡긴다.
+     */
+    public void showSettlementStatistics() {
+        int totalCount = repository.getTotalCount();
+        Map<Job, Long> jobCounts = repository.countByJob();
+        Map<Status, Long> statusCounts = repository.countByStatus();
+        double averageSkillLevel = repository.getAverageSkillLevel();
+
+        view.displayStatistics(
+                totalCount,
+                jobCounts,
+                statusCounts,
+                averageSkillLevel
+        );
     }
 
 
